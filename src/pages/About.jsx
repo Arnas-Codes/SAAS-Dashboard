@@ -1,36 +1,75 @@
 import React from "react";
+import { motion } from "framer-motion";
 import ArrowIcon from "../assets/icons/ArrowIcon.png";
+import { fadeUp, staggerContainer } from "../Animation";
 
 const features = [
   {
-    name: "Luxury facilities",
-    desk: "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities.",
+    name: "Luxury Facilities",
+    description:
+      "The advantage of hiring a workspace with us is that it gives you comfortable service and all-around facilities.",
   },
   {
     name: "Affordable Price",
-    desk: "You can get a workspace of the highst quality at an affordable price and still enjoy the facilities that are oly here.",
+    description:
+      "You can get a workspace of the highest quality at an affordable price and still enjoy the facilities that are only here.",
   },
   {
     name: "Many Choices",
-    desk: "We provide many unique work space choices so that you can choose the workspace to your liking.",
+    description:
+      "We provide many unique workspace choices so that you can choose the workspace to your liking.",
   },
 ];
+
 const About = () => {
   return (
-    <div className="max-w-7xl flex items-center mx-auto px-10 pt-6 gap-20 justify-center">
-      <h2 className="text-2xl font-bold">Why Choosing Us</h2>
-      <div className="flex gap-5">
-        {features.map((feature, i) => (
-          <div className="flex flex-col gap-3" key={i}>
-            <h3 className="text-lg font-bold">{feature.name}</h3>
-            <p className="tect-xs">{feature.desk}</p>
-            <div className="flex gap-2 text-[#E58411]">
-              <p>More Info</p> <img className="" src={ArrowIcon} alt="Img" />
+    <section className="max-w-7xl mx-auto px-6 md:px-10 py-16 flex flex-col lg:flex-row justify-between gap-10">
+      <motion.h2
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-bold max-w-xs leading-tight"
+      >
+        Why Choosing Us
+      </motion.h2>
+
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
+      >
+        {features.map((feature) => (
+          <motion.div
+            key={feature.name}
+            variants={fadeUp}
+            whileHover={{ y: -5 }}
+            className="flex flex-col justify-between gap-4"
+          >
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {feature.name}
+              </h3>
+
+              <p className="text-sm text-gray-500 leading-relaxed">
+                {feature.description}
+              </p>
             </div>
-          </div>
+
+            <button className="flex items-center gap-2 text-[#E58411] font-medium text-sm cursor-pointer hover:gap-3 transition-all duration-300 w-fit">
+              More Info
+              <img
+                src={ArrowIcon}
+                alt=""
+                className="w-4 h-4 object-contain"
+              />
+            </button>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 

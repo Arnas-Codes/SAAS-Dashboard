@@ -1,32 +1,49 @@
 import React from "react";
+import { motion } from "framer-motion";
 import BagIcon from "../assets/icons/Bag.png";
+import { navAnimation } from "../Animation";
 
 const navLinks = ["Furniture", "Shop", "About Us", "Contact"];
 
 const Navbar = () => {
   return (
-    <nav
-      className="fixed top-0 right-0 left-0 z-50 h-22 px-12 pt-6 text-white bg-transparent"
+    <motion.nav
+      variants={navAnimation}
+      initial="hidden"
+      animate="visible"
+      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 text-[#E58411]"
     >
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
-        {/* Logo */}
-        <h2 className="font-bold text-xl cursor-pointer">Panto</h2>
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Navigation Links */}
-        <div className="flex gap-12 text-md">
-          {navLinks.map((nav, i) => (
-            <p key={i} className="cursor-pointer hover:opacity-80 transition-opacity">
-              {nav}
-            </p>
-          ))}
-        </div>
+        {/* Logo */}
+        <h1 className="text-xl md:text-2xl font-bold cursor-pointer">
+          Panto
+        </h1>
 
-        {/* Shopping Cart Icon */}
-        <div className="cursor-pointer">
-          <img className="w-10 p-2" src={BagIcon} alt="Cart" />
-        </div>
+        {/* Navigation */}
+        <ul className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <li
+              key={link}
+              className="cursor-pointer relative group"
+            >
+              {link}
+
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full" />
+            </li>
+          ))}
+        </ul>
+
+        {/* Cart */}
+        <button className="hover:scale-110 transition-transform duration-300">
+          <img
+            src={BagIcon}
+            alt="Shopping Cart"
+            className="w-8 md:w-10"
+          />
+        </button>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

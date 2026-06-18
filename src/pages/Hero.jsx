@@ -1,47 +1,90 @@
 import React from "react";
-import rectangleImg from "../assets/images/Rectangle.png";
+import { motion } from "framer-motion";
 import SearchIcon from "../assets/icons/Search.png";
+import { fadeUp, scaleIn } from "../Animation";
 
 const Hero = () => {
   return (
-<div
-  className="h-screen w-full bg-bottom bg-cover bg-no-repeat flex items-center justify-center text-white"
-  style={{ backgroundImage: `url(${rectangleImg})` }}
->
-
-
-      {/* Content Container wrapper to center and stack elements */}
-      <div className="flex flex-col items-center text-center max-w-3xl px-6 gap-6">
-        {/* Main Heading */}
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+    <section className="min-h-screen flex items-center justify-center px-6 text-white">
+      <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-6">
+        <motion.h1
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="
+            font-bold
+            leading-[1.1]
+            tracking-tight
+            text-[clamp(2.5rem,6vw,5.5rem)]
+          "
+        >
           Make your interior more minimalistic & modern
-        </h1>
+        </motion.h1>
 
-        {/* Subtitle */}
-        <p className="text-base md:text-lg text-gray-200 max-w-xl opacity-90">
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
+          className="
+            max-w-2xl
+            text-white/80
+            text-[clamp(1rem,2vw,1.25rem)]
+          "
+        >
           Turn your room with Panto into a lot more minimalist and modern with
           ease and speed.
-        </p>
+        </motion.p>
 
-        {/* Search Bar Container */}
-        <div className="relative w-full max-w-md mt-4 mx-auto">
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.4 }}
+          className="relative w-full max-w-md mt-4"
+        >
           <input
             type="text"
             placeholder="Search furniture..."
-            className="w-full pl-6 pr-14 py-3 md:py-4 rounded-full 
-               backdrop-blur-xs bg-white/15 text-white placeholder-white/70
-               border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-md transition-all"
+            className="
+              w-full
+              py-4
+              pl-6
+              pr-14
+              rounded-full
+              border
+              border-white/30
+              bg-white/15
+              backdrop-blur-md
+              text-white
+              placeholder:text-white/70
+              focus:outline-none
+              focus:ring-2
+              focus:ring-white/40
+              transition-all
+            "
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center hover:opacity-80 transition-opacity">
-            <img
-              src={SearchIcon}
-              alt="Search"
-              className="w-6 h-6 object-contain"
-            />
-          </button>
-        </div>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="
+              absolute
+              right-2
+              top-1/2
+              -translate-y-1/2
+              flex
+              items-center
+              justify-center
+              w-10
+              h-10
+            "
+          >
+            <img src={SearchIcon} alt="Search" className="w-6 h-6" />
+          </motion.button>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
